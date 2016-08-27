@@ -40,3 +40,9 @@ Blocked domains resolve to `0.0.0.0`.
 
 - Blocked domains: [Steven Black's hosts project](https://github.com/StevenBlack/hosts)
 - dnsmasq base image: [Andy Shinn's docker-dnsmasq project](https://github.com/andyshinn/docker-dnsmasq)
+
+## License
+
+Copyright &copy; 2016 Chris Schmich
+<br />
+MIT License. See [LICENSE](LICENSE) for details.
