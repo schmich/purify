@@ -43,5 +43,5 @@ Blocked domains resolve to `0.0.0.0`.
 
 ## License
 
-Copyright &copy; 2016 Chris Schmich
+Copyright &copy; 2016 Chris Schmich  
 MIT License. See [LICENSE](LICENSE) for details.
