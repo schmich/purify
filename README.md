@@ -4,10 +4,10 @@ A lightweight DNS-based adblocker packaged as an 8MB Docker image. Blocked domai
 
 ## Running
 
+You can pull and run the server directly from Docker Hub. It's safest to [choose a stable tag](https://hub.docker.com/r/schmich/purify/tags) to use in place of `latest` below.
+
 ```
-git clone https://github.com/schmich/purify && cd purify
-docker build -t schmich/purify .
-docker run -d -p 53:53/tcp -p 53:53/udp --cap-add=NET_ADMIN --restart always schmich/purify --log-facility=-
+docker run -d -p 53:53/tcp -p 53:53/udp --cap-add=NET_ADMIN --restart always schmich/purify:latest --log-facility=-
 ```
 
 ## Updating Clients
@@ -25,7 +25,7 @@ docker run -d -p 53:53/tcp -p 53:53/udp --cap-add=NET_ADMIN --restart always sch
 Run the server in the foreground and log all DNS queries:
 
 ```
-docker run -p 53:53/tcp -p 53:53/udp --cap-add=NET_ADMIN --restart always schmich/purify --log-facility=- --log-queries
+docker run -p 53:53/tcp -p 53:53/udp --cap-add=NET_ADMIN --restart always schmich/purify:latest --log-facility=- --log-queries
 ```
 
 Run a DNS query directly against your server (where `1.2.3.4` is your server's IP):
@@ -44,5 +44,4 @@ Blocked domains resolve to `0.0.0.0`.
 ## License
 
 Copyright &copy; 2016 Chris Schmich
-<br />
 MIT License. See [LICENSE](LICENSE) for details.
