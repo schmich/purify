@@ -4,8 +4,8 @@ COPY dnsmasq.conf /etc/dnsmasq.conf
 COPY update-hosts.sh /etc/periodic/daily/update-hosts.sh
 RUN chmod +x /etc/periodic/daily/update-hosts.sh
 RUN /etc/periodic/daily/update-hosts.sh
-RUN mkdir -p /srv/chaff
-COPY start.sh /srv/chaff
-RUN chmod +x /srv/chaff/start.sh
+RUN mkdir -p /srv/purify
+COPY start.sh /srv/purify
+RUN chmod +x /srv/purify/start.sh
 EXPOSE 53 53/udp
-ENTRYPOINT ["/srv/chaff/start.sh"]
+ENTRYPOINT ["/srv/purify/start.sh"]
