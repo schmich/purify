@@ -9,5 +9,5 @@ fi
 dnsmasq=`pidof dnsmasq`
 if [[ $? -eq 0 ]]; then
   echo 'Reload dnsmasq hosts.'
-  kill -SIGHUP `pidof dnsmasq`
+  kill -SIGHUP $dnsmasq
 fi
