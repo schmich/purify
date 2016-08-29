@@ -15,7 +15,7 @@ docker run -d -p 53:53/tcp -p 53:53/udp --cap-add=NET_ADMIN --restart always sch
 - DNS nameservers can be set on your router or on individual devices
 - Phones must be rooted to set DNS for cellular networks
 - Flush your device's DNS cache to notice immediate effects
-  - macOS: `sudo dnscacheutil -flushcache; sudo killall -HUP mDNSResponder`
+  - macOS: `sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder`
   - Windows: `ipconfig /flushdns`
   - Chrome: `chrome://net-internals/#dns`
   - Phones: Reboot
