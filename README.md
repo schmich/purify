@@ -4,7 +4,7 @@ A lightweight DNS-based adblocker packaged as an 8MB Docker image. Blocked domai
 
 ## Running
 
-You can pull and run the server directly from Docker Hub. It's safest to [choose a stable tag](https://hub.docker.com/r/schmich/purify/tags) to use in place of `latest` below.
+You can pull and run the server directly from Docker Hub. You can [choose a stable tag](https://hub.docker.com/r/schmich/purify/tags) to use in place of `latest` below.
 
 ```
 docker run --name purify \
