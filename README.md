@@ -30,8 +30,8 @@ You can specify your own host block list with the `HOSTS_URLS` Docker environmen
 
 ```
 docker run --name purify \
-  -e HOSTS_URLS="https://raw.githubusercontent.com/my/hosts/list"
-  -d -p 53:53/tcp -p 53:53/udp --cap-add=NET_ADMIN
+  -e HOSTS_URLS="https://raw.githubusercontent.com/my/hosts/list" \
+  -d -p 53:53/tcp -p 53:53/udp --cap-add=NET_ADMIN \
   --restart always schmich/purify:latest
 ```
 
