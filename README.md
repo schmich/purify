@@ -1,6 +1,6 @@
 # Purify
 
-A lightweight DNS-based adblocker packaged as an 8MB Docker image. Blocked domains are updated daily from [Steven Black's hosts project](https://github.com/StevenBlack/hosts).
+A lightweight DNS-based adblocker packaged as a Docker image. Blocked hosts are updated daily from [Steven Black's hosts project](https://github.com/StevenBlack/hosts).
 
 ## Running
 
@@ -12,9 +12,7 @@ docker run --name purify \
   --restart always schmich/purify:latest
 ```
 
-You can specify your own hosts to block with the `HOSTS_URLS` Docker environment variable. Each URL in `HOSTS_URLS` (separated by `|`) is downloaded to create the combined blocked hosts list. Only hosts that resolve to `0.0.0.0` are used. See [here](https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts) for an example.
-
-Blocked hosts are updated daily.
+This exposes TCP/UDP port 53 on the host machine to listen for DNS requests.
 
 ## Updating Clients
 
@@ -25,6 +23,19 @@ Blocked hosts are updated daily.
   - Windows: `ipconfig /flushdns`
   - Chrome: `chrome://net-internals/#dns`
   - Phones: Reboot
+
+## Advanced
+
+You can specify your own host block list with the `HOSTS_URLS` Docker environment variable. Each URL in `HOSTS_URLS` (separated by `|`) is downloaded to create the combined blocked hosts list. Only hosts that resolve to `0.0.0.0` are used. See [here](https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts) for an example blocked hosts list.
+
+```
+docker run --name purify \
+  -e HOSTS_URLS="https://raw.githubusercontent.com/my/hosts/list"
+  -d -p 53:53/tcp -p 53:53/udp --cap-add=NET_ADMIN
+  --restart always schmich/purify:latest
+```
+
+Blocked hosts are updated daily.
 
 ## Debugging
 
