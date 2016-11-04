@@ -26,7 +26,9 @@ This exposes TCP/UDP port 53 on the host machine to listen for DNS requests.
 
 ## Advanced
 
-You can specify your own host block list with the `HOSTS_URLS` Docker environment variable. Each URL in `HOSTS_URLS` (separated by `|`) is downloaded to create the combined blocked hosts list. Only hosts that resolve to `0.0.0.0` are used. See [here](https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts) for an example blocked hosts list.
+You can specify your own host block list with the `HOSTS_URLS` Docker environment variable. Each URL in `HOSTS_URLS` (separated by `|`) is downloaded to create the combined blocked hosts list. Only hosts that resolve to `0.0.0.0` are used.
+
+See [Steven Black's blocked hosts lists](https://github.com/StevenBlack/hosts#list-of-all-hosts-file-variants) for more options.
 
 ```
 docker run --name purify \
