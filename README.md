@@ -2,7 +2,7 @@
 
 A lightweight DNS-based adblocker packaged as a Docker image. Blocked hosts are updated daily from [Steven Black's hosts project](https://github.com/StevenBlack/hosts).
 
-## Running
+## Quick Start
 
 You can pull and run the server directly from Docker Hub. You can [choose a stable tag](https://hub.docker.com/r/schmich/purify/tags) to use in place of `latest` below.
 
@@ -26,9 +26,22 @@ This exposes TCP/UDP port 53 on the host machine to listen for DNS requests.
 
 ## Advanced
 
+### Upstream DNS
+
+By default, this container uses the host's DNS settings for upstream name resolution. Alternatively, you can specify custom upstream DNS servers with Docker's `--dns` option. For example, to use Google's DNS servers:
+
+```
+docker run --name purify \
+  -d -p 53:53/tcp -p 53:53/udp --cap-add=NET_ADMIN \
+  --dns 8.8.8.8 --dns 8.8.4.4 \
+  --restart always schmich/purify:latest
+```
+
+### Custom hosts
+
 You can specify your own host block list with the `HOSTS_URLS` Docker environment variable. Each URL in `HOSTS_URLS` (separated by `|`) is downloaded to create the combined blocked hosts list. Only hosts that resolve to `0.0.0.0` are used.
 
-See [Steven Black's blocked hosts lists](https://github.com/StevenBlack/hosts#list-of-all-hosts-file-variants) for more options.
+Blocked hosts are updated daily. See [Steven Black's blocked hosts lists](https://github.com/StevenBlack/hosts#list-of-all-hosts-file-variants) for more options.
 
 ```
 docker run --name purify \
@@ -37,9 +50,7 @@ docker run --name purify \
   --restart always schmich/purify:latest
 ```
 
-Blocked hosts are updated daily.
-
-## Debugging
+### Debugging
 
 Run the server in the foreground and log all DNS queries:
 
