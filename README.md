@@ -16,7 +16,8 @@ This exposes TCP/UDP port 53 on the host machine to listen for DNS requests.
 
 ## Updating Clients
 
-- DNS nameservers can be set on your router or on individual devices
+Once you have your dnsmasq server running, you'll need to update your router's or client's DNS settings to point to your new server's IP.
+
 - Phones must be rooted to set DNS for cellular networks
 - Flush your device's DNS cache to see immediate effects
   - macOS: `sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder`
