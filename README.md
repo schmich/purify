@@ -2,13 +2,17 @@
 
 A lightweight DNS-based adblocker packaged as a Docker image. Blocked hosts are updated daily from [Steven Black's hosts project](https://github.com/StevenBlack/hosts).
 
-## Quick Start
+## Tags
 
-You can pull and run the server directly from Docker Hub. You can [choose a stable tag](https://hub.docker.com/r/schmich/purify/tags) to use in place of `latest` below.
+`schmich/purify:2.76-r1`: dnsmasq 2.76-r1 on Alpine 3.5 x86-64  
+`schmich/purify:2.76-r1-arm`: dnsmasq 2.76-r1 on Alpine 3.5 ARM
+
+## Usage
+
+You can pull and run the server directly from Docker Hub. Choose a stable tag from above to use in place of `latest` below.
 
 ```
-docker run --name purify \
-  -d -p 53:53/tcp -p 53:53/udp --cap-add=NET_ADMIN \
+docker run --name purify -d -p 53:53/tcp -p 53:53/udp --cap-add=NET_ADMIN \
   --restart always schmich/purify:latest
 ```
 
@@ -16,7 +20,7 @@ This exposes TCP/UDP port 53 on the host machine to listen for DNS requests.
 
 ## Updating Clients
 
-Once you have your dnsmasq server running, you'll need to update your router's or client's DNS settings to point to your new server's IP.
+Once you have your dnsmasq server running, you'll need to update your router's or client's DNS settings to point to your server's IP.
 
 - Phones must be rooted to set DNS for cellular networks
 - Flush your device's DNS cache to see immediate effects
@@ -32,8 +36,7 @@ Once you have your dnsmasq server running, you'll need to update your router's o
 By default, this container uses the host's DNS settings for upstream name resolution. Alternatively, you can specify custom upstream DNS servers with Docker's `--dns` option. For example, to use Google's DNS servers:
 
 ```
-docker run --name purify \
-  -d -p 53:53/tcp -p 53:53/udp --cap-add=NET_ADMIN \
+docker run --name purify -d -p 53:53/tcp -p 53:53/udp --cap-add=NET_ADMIN \
   --dns 8.8.8.8 --dns 8.8.4.4 \
   --restart always schmich/purify:latest
 ```
@@ -45,9 +48,8 @@ You can specify your own host block list with the `HOSTS_URLS` Docker environmen
 Blocked hosts are updated daily. See [Steven Black's blocked hosts lists](https://github.com/StevenBlack/hosts#list-of-all-hosts-file-variants) for more options.
 
 ```
-docker run --name purify \
+docker run --name purify -d -p 53:53/tcp -p 53:53/udp --cap-add=NET_ADMIN \
   -e HOSTS_URLS="https://raw.githubusercontent.com/my/hosts/list" \
-  -d -p 53:53/tcp -p 53:53/udp --cap-add=NET_ADMIN \
   --restart always schmich/purify:latest
 ```
 
@@ -56,16 +58,14 @@ docker run --name purify \
 Run the server in the foreground and log all DNS queries:
 
 ```
-docker run --name purify \
-  -p 53:53/tcp -p 53:53/udp --cap-add=NET_ADMIN \
-  schmich/purify:latest \
-  --log-facility=- --log-queries
+docker run --name purify -p 53:53/tcp -p 53:53/udp --cap-add=NET_ADMIN \
+  schmich/purify:latest --log-facility=- --log-queries
 ```
 
-Run a DNS query directly against your server (where `1.2.3.4` is your DNS server's IP):
+Run a DNS query directly against your server (where `192.168.1.100` is your DNS server's IP):
 
 ```
-dig @1.2.3.4 doubleclick.net
+dig @192.168.1.100 doubleclick.net
 ```
 
 Blocked domains resolve to `0.0.0.0`.
@@ -73,7 +73,7 @@ Blocked domains resolve to `0.0.0.0`.
 ## Credits
 
 - Blocked domains: [Steven Black's hosts project](https://github.com/StevenBlack/hosts)
-- dnsmasq base image: [Andy Shinn's docker-dnsmasq project](https://github.com/andyshinn/docker-dnsmasq)
+- dnsmasq x86-64 base image: [Andy Shinn's docker-dnsmasq project](https://github.com/andyshinn/docker-dnsmasq)
 
 ## License
 
