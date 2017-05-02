@@ -43,7 +43,7 @@ docker run --name purify -d -p 53:53/tcp -p 53:53/udp --cap-add=NET_ADMIN \
 
 ### Custom hosts
 
-You can specify your own host block list with the `HOSTS_URLS` Docker environment variable. Each URL in `HOSTS_URLS` (separated by `|`) is downloaded to create the combined blocked hosts list. Only hosts that resolve to `0.0.0.0` are used.
+You can specify your own host block list with the `HOSTS_URLS` Docker environment variable. Each URL in `HOSTS_URLS` (separated by `;`) is downloaded to create the combined blocked hosts list. Only hosts that resolve to `0.0.0.0` are used.
 
 Blocked hosts are updated daily. See [Steven Black's blocked hosts lists](https://github.com/StevenBlack/hosts#list-of-all-hosts-file-variants) for more options.
 
