@@ -1,4 +1,4 @@
-FROM andyshinn/dnsmasq:2.76
+FROM andyshinn/dnsmasq:2.78
 MAINTAINER Chris Schmich <schmch@gmail.com>
 COPY dnsmasq.conf /etc/dnsmasq.conf
 COPY update-hosts.sh /etc/periodic/daily/update-hosts
